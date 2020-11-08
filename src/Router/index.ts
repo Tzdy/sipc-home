@@ -5,5 +5,6 @@ import AuthRoute from "./auth";
 const { baseUrl } = getGlobal();
 
 export default function router(app: Application) {
+    app.set('trust proxy', true);
     app.use(baseUrl, AuthRoute);
 }
