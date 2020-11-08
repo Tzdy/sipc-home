@@ -25,12 +25,14 @@
 
 ## quick start
 ```
+npx tsc
 npm install --registry=https://registry.npm.taobao.org
 npm run dev
 ```
 
 ## production env
 ```
+npx tsc
 npm npm install --registry=https://registry.npm.taobao.org
 npm run prod
 ```
