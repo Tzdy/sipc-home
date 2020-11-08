@@ -9,6 +9,7 @@ export async function register(req: Request, res: Response) {
   let validData = register.validInput();
   if (!validData.success) {
     throw {
+      prod: true,
       message: validData.message,
       code: 20001,
     };
@@ -16,6 +17,7 @@ export async function register(req: Request, res: Response) {
   let hasAccount = await register.hasAccount();
   if (hasAccount) {
     throw {
+      prod: true,
       message: `账号:${username}已存在`,
       code: 20002,
     };

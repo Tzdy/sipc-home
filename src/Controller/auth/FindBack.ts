@@ -12,6 +12,7 @@ export async function findBack(req: Request, res: Response) {
     const validData = findBackByEmail.validInput();
     if (!validData.success) {
       throw {
+        prod: true,
         message: validData.message,
         code: 20002,
       };
@@ -19,6 +20,7 @@ export async function findBack(req: Request, res: Response) {
     const checkInfoValid = findBackByEmail.checkInfoValid();
     if (!checkInfoValid) {
       throw {
+        prod: true,
         code: 20001,
         message: "账号与邮箱不匹配",
       };

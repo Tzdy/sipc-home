@@ -3,7 +3,7 @@ module.exports =  {
     baseUrl: '/prod-api',
     database: {
         username: "root",
-        password: "aq20006jp",
+        password: "123456",
         database: "sipc_home",
         host: "127.0.0.1",
         dialect: "mysql",

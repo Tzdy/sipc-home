@@ -16,6 +16,7 @@ export async function reset(req: Request, res: Response) {
     const inputValid = reset.validInput();
     if (!inputValid.success) {
       throw {
+        prod: true,
         code: 20002,
         message: "重置失败",
       };
@@ -24,6 +25,7 @@ export async function reset(req: Request, res: Response) {
     const keyValid = reset.validKey();
     if (!keyValid) {
       throw {
+        prod: true,
         code: 20002,
         message: "重置失败",
       };
@@ -32,6 +34,7 @@ export async function reset(req: Request, res: Response) {
     const dateValid = reset.validDate();
     if (!dateValid) {
       throw {
+        prod: true,
         code: 20001,
         message: "该密码找回邮件已超过时间限制",
       };
@@ -40,6 +43,7 @@ export async function reset(req: Request, res: Response) {
     const userValid = await reset.validUser();
     if (!userValid) {
       throw {
+        prod: true,
         code: 20002,
         message: `重置失败`,
       };
@@ -49,6 +53,7 @@ export async function reset(req: Request, res: Response) {
     const resetSuccess = await reset.resetPassword();
     if (!resetSuccess) {
       throw {
+        prod: true,
         code: 20002,
         message: `用户id${req.body.$id}重置失败`,
       };
