@@ -41,15 +41,16 @@ export async function reset(req: Request, res: Response) {
     if (!userValid) {
       throw {
         code: 20002,
-        message: "重置失败",
+        message: `重置失败`,
       };
     }
 
+    req.body.$id = reset.getId();
     const resetSuccess = await reset.resetPassword();
     if (!resetSuccess) {
       throw {
         code: 20002,
-        message: "重置失败",
+        message: `用户id${req.body.$id}重置失败`,
       };
     }
 

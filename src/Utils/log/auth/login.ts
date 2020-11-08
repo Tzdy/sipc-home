@@ -1,13 +1,23 @@
 import { Request } from "express";
-import { login } from './auth'
+import { authLog } from './auth'
 import debug from '../debug/index'
 
 let loginLog = {
   success(req: Request) {
-    login.info(`用户名:${req.body.username}登陆成功`);
+    authLog.log({
+      level: 'info',
+      label: 'login',
+      message: `${req.body.usename}登陆成功`,
+      ip: req.ip
+    })
   },
-  failure(message: string) {
-    login.info(message);
+  failure(req: Request, message: string) {
+    authLog.log({
+      level: 'info',
+      label: 'login',
+      message,
+      ip: req.ip
+    })
   },
   error(err: Error) {
     if (err.stack) {

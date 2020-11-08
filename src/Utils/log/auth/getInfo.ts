@@ -1,12 +1,22 @@
 import { Request } from "express";
 import debug from "../debug/index";
-import { getInfo } from './auth'
+import { authLog } from './auth'
 let getInforLog = {
   success(req: Request) {
-    getInfo.info(`用户名:${req.body.$user.username}获取个人信息`);
+    authLog.log({
+      level: 'info',
+      label: 'getInfo',
+      message: `用户名:${req.body.$user.username}获取个人信息`,
+      ip: req.ip
+    })
   },
-  failure(message: string) {
-    getInfo.error(message);
+  failure(req: Request, message: string) {
+    authLog.log({
+      level: 'info',
+      label: 'getInfo',
+      message,
+      ip: req.ip
+    })
   },
   error(err: Error) {
     if (err.stack) {

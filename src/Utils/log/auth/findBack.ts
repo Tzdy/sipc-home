@@ -1,12 +1,22 @@
 import { Request } from "express";
 import debug from "../debug/index";
-import { findBack } from './auth'
+import { authLog } from './auth'
 let findBackLog = {
   success(req: Request) {
-    findBack.info(`用户名:${req.body.username}获取修改密码邮件成功`);
+    authLog.log({
+      level: 'info',
+      label: 'findback',
+      message: `用户名:${req.body.username}获取修改密码邮件成功`,
+      ip: req.ip
+    })
   },
-  failure(message: string) {
-    findBack.error(message);
+  failure(req: Request, message: string) {
+    authLog.log({
+      level: 'info',
+      label: 'findback',
+      message,
+      ip: req.ip
+    })
   },
   error(err: Error) {
     if (err.stack) {

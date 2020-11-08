@@ -7,11 +7,11 @@ export type DiyError = {
 
 export async function resolveError(req: Request, res: Response, resolve: Function, log: any) {
     try {
-        await resolve(req, res);
+        await resolve(req);
         log.success(req, res);
       } catch(err) {
         if (err.prod) {
-          log.failure(err.message);
+          log.failure(req, err.message);
           res.send(err)
         } else {
           log.error(err);

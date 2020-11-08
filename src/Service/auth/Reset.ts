@@ -10,7 +10,9 @@ class Reset extends Super {
         super(info);
         this.key = key;
     }
-
+    public getId() {
+        return this.id;
+    }
     public async resetPassword() {
         const { password } = this.info;
         if (this.id && password) {
