@@ -7,7 +7,7 @@ let loginLog = {
     authLog.log({
       level: 'info',
       label: 'login',
-      message: `${req.body.usename}登陆成功`,
+      message: `${req.body.username}登陆成功`,
       ip: req.ip
     })
   },
